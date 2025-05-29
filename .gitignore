@@ -76,3 +76,4 @@ wandb/
 # Hugging Face
 .cache/
 transformers_cache/ 
+/.cursor
