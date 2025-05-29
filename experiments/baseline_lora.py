@@ -105,6 +105,12 @@ def setup_model_and_tokenizer(config: dict):
     # Apply LoRA to the model
     model = get_peft_model(model, lora_config)
     
+    # Enable gradients for trainable parameters
+    model.train()
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            param.requires_grad_(True)
+    
     # Print model info
     param_info = count_trainable_parameters(model)
     logger.info(f"Model loaded with LoRA configuration:")
@@ -182,7 +188,7 @@ def setup_training_arguments(config: dict) -> TrainingArguments:
         per_device_train_batch_size=training_config['per_device_train_batch_size'],
         per_device_eval_batch_size=training_config['per_device_eval_batch_size'],
         gradient_accumulation_steps=training_config['gradient_accumulation_steps'],
-        learning_rate=training_config['learning_rate'],
+        learning_rate=float(training_config['learning_rate']),
         lr_scheduler_type=training_config['lr_scheduler_type'],
         warmup_ratio=training_config['warmup_ratio'],
         weight_decay=training_config['weight_decay'],
@@ -193,7 +199,7 @@ def setup_training_arguments(config: dict) -> TrainingArguments:
         dataloader_pin_memory=training_config.get('dataloader_pin_memory', False),
         
         # Evaluation and logging
-        evaluation_strategy=training_config['evaluation_strategy'],
+        eval_strategy=training_config['evaluation_strategy'],
         eval_steps=training_config['eval_steps'],
         logging_steps=training_config['logging_steps'],
         save_steps=training_config['save_steps'],

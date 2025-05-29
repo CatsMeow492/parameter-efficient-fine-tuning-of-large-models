@@ -22,8 +22,8 @@ lora:
 
 training:
   num_train_epochs: 3
-  per_device_train_batch_size: 4
-  per_device_eval_batch_size: 4
+  per_device_train_batch_size: 1  # Reduced to eliminate batching issues
+  per_device_eval_batch_size: 1   # Reduced to eliminate batching issues
   gradient_accumulation_steps: 4
   learning_rate: 2e-4
   lr_scheduler_type: "cosine"
@@ -31,8 +31,8 @@ training:
   weight_decay: 0.01
   
   # Memory optimization
-  fp16: true
-  gradient_checkpointing: true
+  fp16: false               # Disabled for MPS/CPU compatibility
+  gradient_checkpointing: false  # Disabled due to PEFT incompatibility
   dataloader_pin_memory: false
   
   # Evaluation and logging
@@ -44,9 +44,9 @@ training:
   
 data:
   dataset_name: "tatsu-lab/alpaca"
-  max_length: 512
-  train_split: "train[:1000]"  # Small subset for initial testing
-  eval_split: "train[1000:1200]"  # Small eval set
+  max_length: 256  # Reduced from 512 to use less memory
+  train_split: "train[:100]"  # Further reduced for memory constraints
+  eval_split: "train[100:120]"  # Further reduced eval set
   
   # Data preprocessing
   instruction_template: "### Instruction:\n{instruction}\n\n### Response:\n{output}"

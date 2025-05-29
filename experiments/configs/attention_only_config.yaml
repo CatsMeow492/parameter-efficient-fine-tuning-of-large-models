@@ -1,0 +1,64 @@
+# Attention Only LoRA Configuration
+# Testing: Does attention-only placement achieve better performance than FF-only?
+
+model:
+  name: "microsoft/DialoGPT-medium"
+  cache_dir: "./models"
+  
+lora:
+  r: 16                    # Same rank as baseline for fair comparison
+  lora_alpha: 32          # Same alpha as baseline
+  lora_dropout: 0.1       # Same dropout as baseline
+  bias: "none"            
+  task_type: "CAUSAL_LM"  
+  
+  # Target modules: ONLY attention layers (hypothesis test)
+  target_modules:
+    - "c_attn"            # Attention layer 1
+    - "c_proj"            # Attention layer 2  
+    # REMOVED: "c_fc" (feed-forward layers)
+
+training:
+  num_train_epochs: 3
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 2e-4
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  
+  # Logging and evaluation
+  logging_steps: 50
+  eval_steps: 100
+  eval_strategy: "steps"
+  save_steps: 500
+  save_total_limit: 2
+  
+  # Memory optimization
+  fp16: false               # Disabled for MPS/CPU compatibility
+  gradient_checkpointing: false  # Disabled due to PEFT incompatibility
+  dataloader_pin_memory: false
+
+data:
+  dataset_name: "tatsu-lab/alpaca"
+  max_length: 256  # Reduced from 512 to use less memory
+  train_split: "train[:100]"  # Small subset for initial testing
+  eval_split: "train[100:120]"  # Small eval set
+  instruction_template: |
+    Below is an instruction that describes a task, paired with an input that provides further context.
+    Write a response that appropriately completes the request.
+    
+    ### Instruction:
+    {instruction}
+    
+    ### Input:
+    {input}
+    
+    ### Response:
+    {output}
+
+experiment:
+  name: "attention_only_lora"
+  output_dir: "./results/attention_only_lora"
+  run_name: "attention_only_lora" 

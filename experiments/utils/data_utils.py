@@ -135,7 +135,7 @@ def tokenize_function(
     tokenized = tokenizer(
         formatted_texts,
         truncation=True,
-        padding=False,  # We'll pad dynamically during training
+        padding=False,  # Let the data collator handle padding
         max_length=max_length,
         return_tensors=None
     )
@@ -167,7 +167,7 @@ def preprocess_dataset(
         Preprocessed dataset
     """
     if remove_columns is None:
-        remove_columns = ["instruction", "input", "output"]
+        remove_columns = ["instruction", "input", "output", "text"]
     
     # Tokenize the dataset
     tokenized_dataset = dataset.map(
@@ -189,5 +189,4 @@ def get_data_collator(tokenizer: PreTrainedTokenizer):
     return DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
         mlm=False,  # We're doing causal LM, not masked LM
-        pad_to_multiple_of=8  # For better performance on GPUs
     ) 

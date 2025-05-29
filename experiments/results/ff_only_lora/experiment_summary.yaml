@@ -1,0 +1,47 @@
+efficiency_metrics:
+  peak_memory_gb: 0.0
+  peak_memory_mb: 0
+  training_time_minutes: 1.0279538790384928
+  training_time_seconds: 61.67723274230957
+efficiency_ratios:
+  memory_per_parameter: 0.0
+  parameters_per_second: 31876.916531167608
+experiment_name: ff_only_lora
+lora_config:
+  bias: none
+  lora_alpha: 32
+  lora_dropout: 0.1
+  r: 16
+  target_modules:
+  - c_fc
+  task_type: CAUSAL_LM
+model_name: microsoft/DialoGPT-medium
+parameter_efficiency:
+  parameter_reduction: 99.44895200429357
+  total_parameters: 356789248
+  trainable_parameters: 1966080
+  trainable_percentage: 0.5510479957064176
+performance_metrics:
+  epoch: 3.0
+  eval_loss: 4.252389907836914
+  eval_perplexity: 3391.25341796875
+  eval_runtime: 4.4599
+  eval_samples_per_second: 4.484
+  eval_steps_per_second: 4.484
+training_config:
+  dataloader_pin_memory: false
+  eval_steps: 100
+  evaluation_strategy: steps
+  fp16: false
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: false
+  learning_rate: 2e-4
+  logging_steps: 50
+  lr_scheduler_type: cosine
+  num_train_epochs: 3
+  per_device_eval_batch_size: 1
+  per_device_train_batch_size: 1
+  save_steps: 500
+  save_total_limit: 2
+  warmup_ratio: 0.1
+  weight_decay: 0.01
