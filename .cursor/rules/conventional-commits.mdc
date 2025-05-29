@@ -1,0 +1,168 @@
+---
+description: Use this rule for a guideline when preparing to commit
+globs: 
+alwaysApply: false
+---
+# Conventional Commits Guidelines
+
+## Overview
+This project follows the [Conventional Commits specification](mdc:https:/www.conventionalcommits.org) to maintain a clean, readable commit history that supports automated tooling and clear communication about changes.
+
+## Commit Message Structure
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+## Commit Types
+
+### Primary Types
+- **feat**: A new feature or capability
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Code style changes (formatting, missing semi-colons, etc.)
+- **refactor**: Code changes that neither fix bugs nor add features
+- **perf**: Performance improvements
+- **test**: Adding or updating tests
+- **build**: Changes to build system or external dependencies
+- **ci**: Changes to CI configuration files and scripts
+- **chore**: Other changes that don't modify src or test files
+- **revert**: Reverts a previous commit
+
+### Research-Specific Types
+- **experiment**: New experiments or experimental configurations
+- **data**: Changes to datasets, data processing, or data collection
+- **model**: Changes to model architectures or configurations
+- **analysis**: Analysis scripts, visualization, or result interpretation
+- **paper**: Changes related to paper writing or documentation
+
+## Scopes for This Project
+Common scopes for this parameter-efficient tuning project:
+- **lora**: LoRA-related changes
+- **qlora**: QLoRA-related changes  
+- **adapters**: General adapter implementations
+- **training**: Training pipeline changes
+- **evaluation**: Evaluation scripts and metrics
+- **data**: Data processing and handling
+- **models**: Model implementations (llama, bert, etc.)
+- **experiments**: Experiment configurations
+- **results**: Result analysis and visualization
+- **docs**: Documentation updates
+
+## Examples
+
+### Features
+```
+feat(lora): implement feed-forward only LoRA adapter placement
+
+feat(training): add support for gradient checkpointing during fine-tuning
+
+feat(evaluation): add perplexity metric to evaluation pipeline
+```
+
+### Bug Fixes
+```
+fix(adapters): correct parameter counting for nested adapters
+
+fix(training): resolve CUDA out of memory error with large batch sizes
+
+fix(data): handle edge case in tokenization for special characters
+```
+
+### Documentation
+```
+docs: update README with experiment reproduction steps
+
+docs(lora): add docstrings to LoRA implementation functions
+
+docs: add citation information for baseline methods
+```
+
+### Experiments
+```
+experiment: compare LoRA vs QLoRA on GSM8K dataset
+
+experiment(evaluation): benchmark memory usage across adapter types
+
+experiment: ablation study on LoRA rank values [2, 4, 8, 16]
+```
+
+### Research/Analysis
+```
+analysis: generate performance comparison plots for paper
+
+paper: draft methodology section for LoRA placement study
+
+model(llama): implement 7B parameter variant for resource constraints
+```
+
+### Performance & Optimization
+```
+perf(training): optimize memory usage in gradient accumulation
+
+perf(inference): reduce latency with adapter weight caching
+
+refactor(adapters): simplify adapter initialization logic
+```
+
+## Breaking Changes
+Mark breaking changes with `!` after the type/scope:
+```
+feat(adapters)!: change adapter API to support multiple ranks
+
+BREAKING CHANGE: adapter initialization now requires rank parameter
+```
+
+## Guidelines
+
+### Description Guidelines
+- Use imperative mood ("add" not "added" or "adds")
+- Don't capitalize the first letter
+- No period at the end
+- Be concise but descriptive
+- Limit to 50 characters when possible
+
+### Body Guidelines
+- Use body to explain what and why, not how
+- Wrap at 72 characters
+- Separate from description with blank line
+
+### Research-Specific Guidelines
+- Include experiment IDs or run numbers when relevant
+- Reference paper sections when making paper-related commits
+- Include model/dataset names when they provide context
+- Link to relevant issues or discussions when applicable
+
+## Examples with Body
+```
+feat(lora): implement selective layer LoRA placement
+
+Allow LoRA adapters to be placed only in feed-forward layers
+instead of both attention and feed-forward. This reduces
+trainable parameters by ~40% while maintaining performance
+on GSM8K benchmark.
+
+Closes #23
+```
+
+```
+experiment: evaluate LoRA rank sensitivity on mathematical reasoning
+
+Test LoRA ranks [1, 2, 4, 8, 16, 32] on GSM8K dataset using
+LLaMA-2-7B base model. Track accuracy vs trainable parameter
+count to find optimal efficiency point.
+
+Related to paper section 4.2
+Run ID: exp_20240115_rank_sweep
+```
+
+## Tools Integration
+These commit messages work well with:
+- Automated changelog generation
+- Semantic version bumping
+- GitHub/GitLab issue linking
+- Research experiment tracking
+- Paper writing workflow integration
