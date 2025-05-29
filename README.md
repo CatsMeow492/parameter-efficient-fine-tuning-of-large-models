@@ -6,6 +6,8 @@ A research project investigating **selective LoRA placement strategies** for opt
 
 > **"Can selective LoRA placement in specific transformer layers (attention-only, feed-forward-only, or strategic layer subsets) achieve comparable performance to full-model LoRA placement while using fewer trainable parameters?"**
 
+📚 **[View all paper references with direct arXiv links →](docs/references.md)**
+
 ## Project Structure
 
 ```

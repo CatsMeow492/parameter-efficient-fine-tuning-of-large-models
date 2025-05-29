@@ -8,6 +8,7 @@
 ### Core LoRA Papers
 
 #### ✅ LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)
+**arXiv:** https://arxiv.org/abs/2106.09685  
 - **Summary:** Introduces LoRA, a method that freezes all pre-trained weights and injects small low-rank trainable matrices into each Transformer layer. Reduces trainable parameters by up to ~10,000× in GPT-3 and cuts memory usage ~3×, yet matches or exceeds full fine-tuning performance. Achieves on-par results with no extra inference latency.
 - **Notable Gaps:**
   - **Adaptive Rank Allocation:** LoRA uses fixed rank for all layers - optimal rank per layer/module remains open
@@ -16,6 +17,7 @@
 - **Relevance:** Demonstrates performance–efficiency sweet spot, sparks interest in where and how to insert adapters
 
 #### ✅ QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)
+**arXiv:** https://arxiv.org/abs/2305.14314  
 - **Summary:** Builds on LoRA with quantization for extreme memory efficiency. Quantizes pre-trained model to 4-bit precision and fine-tunes via LoRA adapters, allowing 65B-parameter model finetuning on single 48GB GPU with no performance degradation. Finetuned 65B LLaMA to ~99.3% of ChatGPT performance in 24 hours on one GPU.
 - **Key Techniques:** 4-bit NormalFloat data type, double quantization, paged optimizers
 - **Notable Gaps:**
@@ -27,6 +29,7 @@
 ### Adapter Methods
 
 #### ✅ Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019)
+**arXiv:** https://arxiv.org/abs/1902.00751  
 - **Summary:** Introduced "adapters" for Transformers - small bottleneck neural layers inserted into each layer while original weights remain frozen. Achieved near SOTA with only ~3.6% extra parameters per task. BERT with adapters reached within 0.4% of full fine-tuning accuracy while training <4% parameters.
 - **Notable Gaps:**
   - **Inference Overhead & Sparsity:** Could we skip adapters in less critical layers?
@@ -35,6 +38,7 @@
 - **Relevance:** Originated modern adapter design, highlights placement and sizing as key levers
 
 #### ✅ AdaLoRA: Adaptive Budget Allocation for PEFT (Zhang et al., 2023)
+**arXiv:** https://arxiv.org/abs/2303.10512  
 - **Summary:** Addresses LoRA's fixed-budget limitation by adaptively allocating parameter budget across weight matrices based on importance. Uses pseudo-SVD and prunes low singular values for less important layers. Achieves better performance than fixed-rank LoRA given same total parameters.
 - **Notable Gaps:**
   - **Beyond Fixed Budgets:** Automated budget selection, dynamic growing/shrinking during training
@@ -43,6 +47,7 @@
 - **Relevance:** Treats placement/design as learnable variables, reinforces that not all layers are equal
 
 #### ✅ Prefix-Tuning: Optimizing Continuous Prompts for Generation (Li & Liang, 2021)
+**arXiv:** https://arxiv.org/abs/2101.00190  
 - **Summary:** Learns task-specific prefix vectors prepended at each layer's input while keeping model weights frozen. Tuning only 0.1% of parameters achieved performance comparable to full fine-tuning, often outperforming in low-data settings.
 - **Notable Gaps:**
   - **Task Applicability:** Mixed success on non-generative tasks
