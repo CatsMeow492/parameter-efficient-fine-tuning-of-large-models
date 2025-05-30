@@ -1,7 +1,8 @@
 # Selective LoRA: Systematic Placement Strategies for Parameter-Efficient Fine-Tuning
 
 **Authors:** Taylor Mohney, Dorian Hryniewicki  
-**Affiliations:** ¹ University of Nevada Las Vegas
+**Affiliations:** ¹ University of Nevada Las Vegas  
+
 **Contact:** mohney@unlv.nevada.edu
 
 ## Abstract
