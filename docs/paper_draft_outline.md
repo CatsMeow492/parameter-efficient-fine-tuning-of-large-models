@@ -99,12 +99,16 @@
 - ✅ Complete ablation study results  
 - ✅ Performance vs efficiency analysis
 - ✅ Key findings and insights
+- ✅ **Detailed methodology section** (papers/methodology_section.md)
+- ✅ **Comprehensive results section** (papers/results_section.md)
+- ✅ **Literature review and related work** (papers/literature_review.md)
 
 **Next Steps:**
-- 📝 Write methodology section (detailed)
-- 📊 Create publication-quality figures
-- 🔍 Literature review and related work
-- 📝 Draft introduction and conclusion
+- 📝 Write introduction section 
+- 📝 Write conclusion section
+- 📊 Create publication-quality figures from analysis
+- 🔍 Format for target venue (EMNLP/ACL)
+- 📝 Write abstract and polish draft
 
 **Target Venues:**
 - EMNLP 2025 (Findings)
