@@ -2,7 +2,6 @@
 
 **Authors:** Taylor Mohney, Dorian Hryniewicki  
 **Affiliations:** ¹ University of Nevada Las Vegas  
-
 **Contact:** mohney@unlv.nevada.edu
 
 ## Abstract
