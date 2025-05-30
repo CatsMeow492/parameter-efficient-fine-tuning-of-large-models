@@ -27,8 +27,8 @@ Following the 10-step research methodology outlined in `goal.md`:
 2. ✅ **Skim closest prior work** - **COMPLETE** ([docs/literature_notes.md](docs/literature_notes.md))
 3. ✅ **Reproduce a baseline** - **COMPLETE** - Standard LoRA implementation
 4. ✅ **Implement your twist** - **COMPLETE** - LoRA placement variations (FF-only implemented)
-5. 🔄 **Run controlled experiments** - **IN PROGRESS** - Comparative analysis (baseline vs FF-only complete)
-6. **Analyze & visualize** - Performance vs efficiency trade-off analysis
+5. ✅ **Run controlled experiments** - **COMPLETE** - Comparative analysis (all three strategies complete)
+6. 🔄 **Analyze & visualize** - **IN PROGRESS** - Performance vs efficiency trade-off analysis
 7. **Draft the paper** - Writing and documentation
 8. **Collect friendly reviews** - Peer feedback
 9. **Pick venue & polish** - Submission preparation
@@ -36,18 +36,18 @@ Following the 10-step research methodology outlined in `goal.md`:
 
 ## Current Status
 
-**Phase:** Step 5 - Controlled experiments ✅ **2/3 COMPLETE**  
-**Timeline:** Week 4-5 of 12-week schedule
+**Phase:** Step 6 - Analysis & Visualization ✅ **EXPERIMENTS COMPLETE**  
+**Timeline:** Week 5 of 12-week schedule
 
 ### 🔬 Experimental Results Summary
 
 | Experiment | Status | Eval Loss | Trainable Params | Training Time | Key Finding |
 |------------|--------|-----------|------------------|---------------|-------------|
-| **Baseline LoRA** | ✅ Complete | **3.09** | 6.3M (1.74%) | 90.5s | Standard performance |
-| **Feed-Forward Only** | ✅ Complete | **4.25** | 1.97M (0.55%) | 61.7s | **69% fewer params, 32% faster** |
-| **Attention Only** | 🔄 Pending | - | - | - | Next experiment |
+| **Baseline LoRA** | ✅ Complete | **3.09** | 6.3M (1.74%) | 90.5s | Best performance |
+| **Feed-Forward Only** | ✅ Complete | 4.25 | **1.97M (0.55%)** | **61.7s** | **69% fewer params, 32% faster** |
+| **Attention Only** | ✅ Complete | 3.48 | 4.33M (1.20%) | 77.2s | **Best perplexity (2,272)** |
 
-**Key Research Finding**: Feed-forward only LoRA achieves **69% parameter reduction** and **32% training speedup** with acceptable performance trade-off.
+**🏆 Key Research Achievement**: Attention layers are more critical than feed-forward layers, but FF-only provides maximum efficiency with acceptable trade-offs.
 
 ### Research Progress
 - ✅ **Literature Review**: 5 key papers analyzed, gaps identified

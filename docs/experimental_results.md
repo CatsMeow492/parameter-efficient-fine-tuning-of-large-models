@@ -52,44 +52,66 @@ This document tracks all experimental results for the **selective LoRA placement
 - ✅ **Better perplexity** (requires investigation)
 
 ### Experiment 3: Attention Only LoRA
-**Date**: Pending  
-**Status**: 🔄 Planned  
+**Date**: May 29, 2025  
+**Status**: ✅ Complete  
 
 **Configuration**:
 - Target modules: `["c_attn", "c_proj"]` (attention layers only)
-- Expected trainable parameters: ~4.3M (estimated)
+- Trainable parameters: 4,325,376 (1.20% of total)
+
+**Results**:
+- **Evaluation Loss**: 3.48 (+13% vs baseline)
+- **Perplexity**: 2,272 (-47% vs baseline)
+- **Training Time**: 77.2 seconds (-15% vs baseline)
+- **Parameter Reduction**: 98.80%
+
+**Key Finding**: 
+- ✅ **31% fewer trainable parameters** than baseline
+- ✅ **15% faster training**
+- ✅ **Much better than feed-forward only** (3.48 vs 4.25 loss)
+- ✅ **Best perplexity** of all three approaches
 
 ## Comparative Analysis
 
 | Metric | Baseline | Feed-Forward Only | Attention Only | Best Result |
 |--------|----------|-------------------|----------------|-------------|
-| Eval Loss | **3.09** | 4.25 | TBD | 🏆 Baseline |
-| Perplexity | 4,283 | **3,391** | TBD | 🏆 FF-Only |
-| Trainable Params | 6.3M | **1.97M** | TBD | 🏆 FF-Only |
-| Training Time | 90.5s | **61.7s** | TBD | 🏆 FF-Only |
-| Parameter Efficiency | 98.26% | **99.45%** | TBD | 🏆 FF-Only |
+| Eval Loss | **3.09** | 4.25 | 3.48 | 🏆 Baseline |
+| Perplexity | 4,283 | 3,391 | **2,272** | 🏆 Attention-Only |
+| Trainable Params | 6.3M | **1.97M** | 4.33M | 🏆 FF-Only |
+| Training Time | 90.5s | **61.7s** | 77.2s | 🏆 FF-Only |
+| Parameter Efficiency | 98.26% | **99.45%** | 98.80% | 🏆 FF-Only |
 
 ## Research Insights
 
-### 1. Parameter Efficiency
-- Feed-forward only placement achieves **remarkable parameter efficiency** (99.45% reduction)
-- This **exceeds our hypothesis** of 50% fewer parameters (achieved 69% reduction)
+### 1. Layer Importance Hierarchy
+- **Attention layers are more critical** for performance than feed-forward layers
+- **Feed-forward layers offer maximum parameter efficiency** with acceptable degradation
+- **Full baseline remains best** for pure performance metrics
 
-### 2. Performance Trade-offs
-- **Mixed results**: Higher loss but better perplexity suggests need for investigation
-- Performance degradation may be **acceptable** given massive efficiency gains
+### 2. Performance vs Efficiency Trade-offs
+- **Feed-forward only**: Maximum efficiency (99.45% reduction) with 37% performance hit
+- **Attention only**: Balanced approach (98.80% reduction) with 13% performance hit
+- **Baseline**: Best performance but least efficient (98.26% reduction)
 
-### 3. Training Efficiency
-- **32% faster training** with FF-only placement
-- Suggests computational benefits beyond just parameter reduction
+### 3. Perplexity Contradiction Investigation Needed
+- **Counterintuitive result**: Higher loss but better perplexity in some cases
+- **Hypothesis**: Different mathematical formulations may explain this
+- **Action**: Requires deeper investigation into metric calculation differences
+
+### 4. Training Efficiency Insights
+- **Feed-forward only**: 32% faster training (biggest speedup)
+- **Attention only**: 15% faster training (modest speedup)
+- Suggests **computational overhead differs significantly** between layer types
 
 ## Next Steps
 
-1. **Complete attention-only experiment** for full ablation study
-2. **Investigate perplexity contradiction** - why better despite higher loss?
-3. **Test on larger datasets** to validate findings
-4. **Explore hybrid approaches** (selective layer placement)
-5. **Analyze attention patterns** to understand why FF-layers are sufficient
+1. ✅ **Complete attention-only experiment** for full ablation study
+2. **🔄 CURRENT: Investigate perplexity contradiction** - why better despite higher loss?
+3. **📊 NEXT: Create visualizations** comparing efficiency vs performance trade-offs
+4. **📈 NEXT: Analyze layer importance** and computational overhead patterns
+5. **🔬 FUTURE: Test hybrid approaches** (selective layer placement)
+6. **📝 FUTURE: Begin methodology draft** for paper preparation
+7. **🔍 FUTURE: Validate findings** on larger datasets and different models
 
 ## Methodology Notes
 

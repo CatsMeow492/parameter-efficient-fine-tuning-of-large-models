@@ -31,7 +31,7 @@ training:
   # Logging and evaluation
   logging_steps: 50
   eval_steps: 100
-  eval_strategy: "steps"
+  evaluation_strategy: "steps"
   save_steps: 500
   save_total_limit: 2
   
@@ -45,20 +45,18 @@ data:
   max_length: 256  # Reduced from 512 to use less memory
   train_split: "train[:100]"  # Small subset for initial testing
   eval_split: "train[100:120]"  # Small eval set
-  instruction_template: |
-    Below is an instruction that describes a task, paired with an input that provides further context.
-    Write a response that appropriately completes the request.
-    
-    ### Instruction:
-    {instruction}
-    
-    ### Input:
-    {input}
-    
-    ### Response:
-    {output}
+  
+  # Data preprocessing (simplified to match working config)
+  instruction_template: "### Instruction:\n{instruction}\n\n### Response:\n{output}"
+  response_template: "### Response:"
 
 experiment:
   name: "attention_only_lora"
   output_dir: "./results/attention_only_lora"
-  run_name: "attention_only_lora" 
+  logging_dir: "./results/attention_only_lora/logs"
+  run_name: "attention_only_lora"
+  seed: 42
+  
+  # Weights & Biases (optional)
+  wandb_project: "lora-placement-study"
+  wandb_run_name: "attention-only-lora" 
