@@ -116,5 +116,3 @@ python baseline_lora.py --config configs/base_config.yaml
 13. **📢 FUTURE**: Collect community feedback for EMNLP strengthening
 
 ---
-
-*Research methodology based on the 10-step roadmap for first-time research paper authors.*
