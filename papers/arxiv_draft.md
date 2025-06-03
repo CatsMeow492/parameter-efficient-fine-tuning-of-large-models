@@ -407,7 +407,7 @@ Our work establishes the foundation for this strategic approach, but significant
 
 ## References
 
-[Note: In the actual arXiv submission, this would include full bibliographic citations. Key references include:]
+[Key references include:]
 
 - Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., & Chen, W. (2022). LoRA: Low-Rank Adaptation of Large Language Models. ICLR 2022.
 
@@ -420,7 +420,5 @@ Our work establishes the foundation for this strategic approach, but significant
 - Zhang, Q., Chen, M., Bukharin, A., He, P., Cheng, Y., Chen, W., & Zhao, T. (2023). AdaLoRA: Adaptive budget allocation for parameter-efficient fine-tuning. ICLR 2023.
 
 - Dettmers, T., Pagnoni, A., Holtzman, A., & Zettlemoyer, L. (2023). QLoRA: Efficient finetuning of quantized LLMs. NeurIPS 2023.
-
-[Additional references for related work in PEFT, transformer architectures, and evaluation methodologies would be included in the full version]
 
 ---
